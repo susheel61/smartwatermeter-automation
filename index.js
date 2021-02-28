@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer');
 const axios = require('axios');
 
-async function fetchDataByMeterId(meterId, sessionId) {
+async function fetchDataByMeterId(page, meterId, sessionId) {
+    await page.goto(`https://www.smartwatermeters.in/_projects/?page=user_profile&meter_id=${meterId}`);
     var postData = {
     };
     let axiosConfig = {
@@ -15,7 +16,7 @@ async function fetchDataByMeterId(meterId, sessionId) {
 }
 
 (async () => {
-    const browser = await puppeteer.launch({headless:false});
+    const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto("https://www.smartwatermeters.in/");
     await page.$eval('input[name=username]', el => el.value = 'susheel61@gmail.com');
@@ -24,7 +25,7 @@ async function fetchDataByMeterId(meterId, sessionId) {
     await page.waitForNavigation();
     const cookies = await page.cookies();
     const sessionId = cookies.find(item => item.name = 'PHPSESSID').value;
-    const meterData = await fetchDataByMeterId('2-2-15121', sessionId);
+    const meterData = await fetchDataByMeterId(page, '2-2-15075', sessionId);
     meterData.data.data.forEach(element => {
         console.log(element);
     });
