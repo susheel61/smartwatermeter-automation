@@ -1,0 +1,15 @@
+{
+  "name": "smartwatermeter-automation",
+  "version": "1.0.0",
+  "description": "Automated login to smartwatermeters.in website and get the session cookie to fetch json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "susheel",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "puppeteer": "^8.0.0"
+  }
+}
